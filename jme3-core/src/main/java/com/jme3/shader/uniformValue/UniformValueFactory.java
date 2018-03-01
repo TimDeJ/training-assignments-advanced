@@ -1,23 +1,17 @@
 package com.jme3.shader.uniformValue;
 
-
-
-
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 
 import java.util.Map;
 import com.jme3.shader.VarType;;
 
-
 public class UniformValueFactory {
 
-  // tag::getValue
+	// tag::getValue
 	private static final Map<VarType, UniformValue> VALUES = new HashMap<VarType, UniformValue>();
 
-	
 	static {
-		
 		VALUES.put(VarType.Matrix3, new Matrix3());
 		VALUES.put(VarType.Matrix4, new Matrix4());
 		VALUES.put(VarType.IntArray, new IntArray());
@@ -33,15 +27,12 @@ public class UniformValueFactory {
 		VALUES.put(VarType.Int, new Default());
 		VALUES.put(VarType.Float, new Default());
 		VALUES.put(VarType.Boolean, new Default());
-				
-		
 	}
-	
+
 	public static Object getValue(VarType type, Object oldValue, Object newValue, FloatBuffer multiData) {
-	UniformValue value = VALUES.get(type);
-	value = value != null ? value: new Default();
-	return value.getValue(oldValue, newValue, multiData);
+		UniformValue value = VALUES.get(type);
+		value = value != null ? value : new Default();
+		return value.getValue(oldValue, newValue, multiData);
 	}
-			
 
 }
